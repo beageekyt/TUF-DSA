@@ -1,23 +1,26 @@
-package org.dsa.arrays.easy;
+package org.dsa.arrays.medium;
 
-public class LongestSubarrayWithKSum {
+public class CountSubarrayWithGivenSum {
     public static void main(String[] args) {
-        int[] nums = {1,1,1,4};
-        int k = 5;
+        int[] nums = {1, 2, 3};
+        int k = 3;
         int ans = 0;
         int sum = 0;
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
             sum = sum + nums[i];
-            while (sum > k) {
+            if (sum==k) {
+                ans ++;
+                sum = sum - nums[j];
+                j++;
+                continue;
+            }
+            if (sum > k) {
                 sum = sum - nums[j];
                 j++;
             }
-            if (sum==k) {
-                ans = Math.max(ans, i - j + 1);
-            }
+
         }
         System.out.println(ans);
-
     }
 }
